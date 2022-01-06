@@ -1,7 +1,7 @@
 This script is useful when you have a kubernetes namespace stuck in terminating stage. Just run the below commands and your namespace will be deleted forcefully  
 Download this script  
 ```
-wget -c url
+wget -c https://raw.githubusercontent.com/dheeth/scripts/main/shell/force-delete-ns/force-delete-ns.sh
 ```
 Start kubernetes proxy server  
 ```
