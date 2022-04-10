@@ -34,7 +34,7 @@ bin/gh auth login --with-token < tokens.txt
 echo "================================authentication==============="
 bin/gh repo clone "$REPO"
 echo "========================================repo clone command above==="
-cd devtronRelease
+cd devtron
 git checkout "$GIT_BRANCH"
 git checkout -b "$RELEASE_BRANCH"
 git pull origin "$RELEASE_BRANCH"
@@ -106,7 +106,7 @@ ls
 pwd
 echo "=============================checking files=========================="
 bin/gh repo clone "gunish-dt/hyperionRelease"
-cd hyperionRelease
+cd charts
 git checkout "$GIT_BRANCH"
 git checkout -b "$RELEASE_BRANCH"
 git pull origin "$RELEASE_BRANCH"
