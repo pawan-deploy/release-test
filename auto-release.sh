@@ -105,7 +105,7 @@ cd ..
 ls
 pwd
 echo "=============================checking files=========================="
-bin/gh repo clone "gunish-dt/hyperionRelease"
+bin/gh repo clone $HYPERION_REPO
 cd charts
 git checkout "$GIT_BRANCH"
 git checkout -b "$RELEASE_BRANCH"
