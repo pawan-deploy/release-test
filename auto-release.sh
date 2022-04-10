@@ -17,7 +17,6 @@ MIGRATOR_FILE=$MIGRATOR_FILE
 MIGRATOR_LINE_1=$MIGRATOR_LINE_1
 MIGRATOR_LINE_2=$MIGRATOR_LINE_2
 VERSION_FILE_HYPERION="charts/devtron/values.yaml"
-VERSION_FILE_CHART="charts/devtron/Chart.yaml"
 
 #Getting the commits
 BUILD_COMMIT=$(git rev-parse HEAD)
