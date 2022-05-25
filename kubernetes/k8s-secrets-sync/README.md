@@ -15,8 +15,8 @@ wget https://raw.githubusercontent.com/dheeth/scripts/main/kubernetes/k8s-secret
 ```
 If using it from outside the cluster, edit `secrets-sync.py` file and replace `config.load_incluster_config()` with `config.load_kube_config()`
 ```
-export EXCLUDE_NAMESPACES=['test','test2']
-export SECRETS_NAMESPACE="test-secret"
+export EXCLUDE_NAMESPACES=['test','test2']  
+export SECRETS_NAMESPACE="test-secret"  
 export SECRET_TYPE="kubernetes.io/tls"
 ```
 EXCLUDE_NAMESPACES - To exclude namespaces from syncing secrets
