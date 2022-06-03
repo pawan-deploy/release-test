@@ -1,4 +1,6 @@
 #!/bin/bash
+K8S_VERSION = 1.22
+ENABLE_CICD = true
 echo "===== Installing microk8s ====="
 sudo snap install microk8s --channel=$K8S_VERSION/stable --classic
 sudo usermod -a -G microk8s $USER
@@ -9,10 +11,13 @@ echo "===== Enabling DNS Storage and Helm extensions ====="
 sudo microk8s enable dns storage helm3
 echo "===== Adding devtron repo ====="
 sudo microk8s helm3 repo add devtron https://helm.devtron.ai
+echo "===== Applying ucid-cm ====="
+sudo microk8s kubectl create namespace devtroncd
+sudo microk8s kubectl apply -f https://raw.githubusercontent.com/Abhinav-26/kops-cluster/dev-cluster-config/devCluster/devtron-ucid.yaml
 echo "===== Wait for 10 seconds ====="
 sleep 10
 echo "===== Installing Devtron ====="
-sudo microk8s helm3 install devtron devtron/devtron-operator --create-namespace --namespace devtroncd --set installer.modules={cicd}
+sudo microk8s helm3 install devtron devtron/devtron-operator --create-namespace --namespace devtroncd if ENABLE_CICD; then; --set installer.modules={cicd}; fi
 echo "===== Adding kubectl and helm to bashrc ====="
 echo "alias kubectl='microk8s kubectl '" >> ~/.bashrc
 echo "alias helm='microk8s helm3 '" >> ~/.bashrc
