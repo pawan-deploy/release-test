@@ -4,6 +4,7 @@ ENABLE_CICD=1
 CUSTOM_BRANCH=0
 REPO=devtron-labs/devtron
 BRANCH=hotfix
+params=()
 echo "===== Installing microk8s ====="
 sudo snap install microk8s --channel=$K8S_VERSION/stable --classic
 sudo usermod -a -G microk8s $USER
@@ -20,7 +21,16 @@ sudo microk8s kubectl apply -f https://raw.githubusercontent.com/prakarsh-dt/kop
 echo "===== Wait for 10 seconds ====="
 sleep 10
 echo "===== Installing Devtron ====="
-sudo microk8s helm3 install devtron devtron/devtron-operator --create-namespace --namespace devtroncd `if [[ $ENABLE_CICD -eq 1 ]]; then echo "--set installer.modules={cicd}"; fi` `if [[ $CUSTOM_BRANCH -eq 1 ]]; then echo "--set installer.repo=$REPO --set installer.repo=$BRANCH"; fi`
+if [[ $ENABLE_CICD -eq 1 ]]
+then
+params+=(--set installer.modules={cicd})
+fi
+if [[ $CUSTOM_BRANCH -eq 1 ]]
+then
+params+=(--set installer.repo=$REPO)
+params+=(--set installer.repo=$BRANCH)
+fi
+sudo microk8s helm3 install devtron devtron/devtron-operator --create-namespace --namespace devtroncd ${params[@]}
 echo "===== Adding kubectl and helm to bashrc ====="
 echo "alias kubectl='microk8s kubectl '" >> ~/.bashrc
 echo "alias helm='microk8s helm3 '" >> ~/.bashrc
