@@ -28,7 +28,7 @@ fi
 if [[ $CUSTOM_BRANCH -eq 1 ]]
 then
 params+=(--set installer.repo=$REPO)
-params+=(--set installer.repo=$BRANCH)
+params+=(--set installer.release=$BRANCH)
 fi
 sudo microk8s helm3 install devtron devtron/devtron-operator --create-namespace --namespace devtroncd ${params[@]}
 echo "===== Adding kubectl and helm to bashrc ====="
