@@ -1,5 +1,7 @@
 FROM python:slim-buster
 
+MAINTAINER pawanmehta488@gmail.com
+
 RUN pip install kubernetes
 
 WORKDIR /
