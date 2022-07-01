@@ -36,6 +36,9 @@ jobs:
         gh repo clone $GITHUB_REPOSITORY
         cd release-test
         tag=$(git tag --sort=committerdate | tail -1)
+        echo $tag
+        echo $RELEASE_BRANCH
+        echo $REPO
         gh release create $tag --target $RELEASE_BRANCH -R $REPO
       env:
         GH_TOKEN: ${{ secrets.git_token }}
