@@ -35,6 +35,6 @@ jobs:
       run: |
         gh repo clone devtron-labs/devtron
         cd devtron
-        git tag -l
+        git tag --sort=committerdate | tail -1
       env:
         GH_TOKEN: ${{ secrets.git_token }}
