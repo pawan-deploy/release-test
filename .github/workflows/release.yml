@@ -40,10 +40,10 @@ jobs:
         echo $RELEASE_BRANCH
         echo $REPO
         gh release create $tag --target $RELEASE_BRANCH -R $REPO
+        sudo apt install nodejs npm -y
+        gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username devtron-labs --repo devtron
       env:
         GH_TOKEN: ${{ secrets.git_token }}
-    - name: update-release-notes
-      run: |
-        sudo apt install nodejs npm -y
-        echo $REPO
-        gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username devtron-labs --repo devtron
+        REPO: $GITHUB_REPOSITORY
+        RELEASE_BRANCH: release-bot
+        
