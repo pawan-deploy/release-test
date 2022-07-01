@@ -20,18 +20,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: export-variables
-      run: | 
-        export REPO=$GITHUB_REPOSITORY
-        export GIT_REPO="github.com/$REPO.git"
-        export GIT_CONFIG_EMAIL="prakarsh@devtron.ai"
-        export GIT_CONFIG_NAME="ReleaseBot"
-        export GIT_USERNAME="prakarsh-dt"
-        export GIT_BRANCH="main"
-        export RAW_GIT_REPO="https:\/\/raw.githubusercontent.com\/devtron-labs\/devtron\/"
-        export VERSION_FILE="manifests/version.txt"
-        export RELEASE_BRANCH="release-bot"
-    - name: auth-login
+    - name: create-release
       run: |
         gh repo clone $GITHUB_REPOSITORY
         cd release-test
