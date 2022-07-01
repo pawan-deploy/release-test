@@ -38,12 +38,11 @@ jobs:
         tag=$(git tag --sort=committerdate | tail -1)
         echo $tag
         echo $RELEASE_BRANCH
-        echo $REPO
-        gh release create $tag --target $RELEASE_BRANCH -R $REPO
+        echo $GITHUB_REPOSITORY
+        gh release create $tag --target $RELEASE_BRANCH -R $GITHUB_REPOSITORY
         sudo apt install nodejs npm -y
-        gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username devtron-labs --repo devtron
+        gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username pawan-deploy --repo release-test
       env:
         GH_TOKEN: ${{ secrets.git_token }}
-        REPO: ${{ GITHUB_REPOSITORY }}
         RELEASE_BRANCH: release-bot
         
