@@ -41,6 +41,7 @@ jobs:
         echo $GITHUB_REPOSITORY
         gh release create $tag --target $RELEASE_BRANCH -R $GITHUB_REPOSITORY
         sudo apt install nodejs npm -y
+        npm install github-release-notes -g
         gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username pawan-deploy --repo release-test
       env:
         GH_TOKEN: ${{ secrets.git_token }}
