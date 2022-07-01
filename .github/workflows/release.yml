@@ -34,5 +34,6 @@ jobs:
         export RELEASE_BRANCH="release-bot"
     - name: auth-login
       run: |
-        pwd
-        ls
+        gh repo clone devtron-labs/devtron
+        cd devtron
+        git tag -l
