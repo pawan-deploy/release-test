@@ -1,6 +1,6 @@
 FROM python:slim-buster
 
-MAINTAINER pawanmehta488@gmail.com
+MAINTAINER dheeth@stayhome.li
 
 RUN pip install kubernetes
 
