@@ -33,7 +33,7 @@ jobs:
         export RELEASE_BRANCH="release-bot"
     - name: auth-login
       run: |
-        gh repo clone $REPO
+        gh repo clone $GITHUB_REPOSITORY
         cd release-test
         tag=$(git tag --sort=committerdate | tail -1)
         gh release create $tag --target $RELEASE_BRANCH -R $REPO
@@ -42,4 +42,5 @@ jobs:
     - name: update-release-notes
       run: |
         sudo apt install nodejs npm -y
+        echo $REPO
         gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username devtron-labs --repo devtron
