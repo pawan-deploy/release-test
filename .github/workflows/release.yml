@@ -44,6 +44,6 @@ jobs:
         gren release --data-source issues --include-messages all --override --token ${{ secrets.git_token }} --tags $tag --username devtron-labs --repo devtron
       env:
         GH_TOKEN: ${{ secrets.git_token }}
-        REPO: $GITHUB_REPOSITORY
+        REPO: ${{ GITHUB_REPOSITORY }}
         RELEASE_BRANCH: release-bot
         
