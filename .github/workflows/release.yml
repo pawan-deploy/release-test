@@ -34,7 +34,5 @@ jobs:
         export RELEASE_BRANCH="release-bot"
     - name: auth-login
       run: |
-        echo $GITHUB_TOKENS > tokens.txt
-        gh auth login --with-token < tokens.txt
         pwd
         ls
